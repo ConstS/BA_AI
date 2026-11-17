@@ -1,0 +1,63 @@
+# === Private working repo (origin = your own git) ===
+# Personal sources (CLAUDE.local.md, *.local.md, rules/local/, logging/) are
+# TRACKED here on purpose - they live in YOUR private repo, not gitignored.
+# The core/private boundary is enforced at PR/sync time (selective push to
+# the shared core remote), not by this file. See PROJECT-RULES.md.
+
+# Per-machine permission settings (not meant to sync even across your own machines)
+.claude/settings.local.json
+
+# Secrets (never in ANY git)
+.claude/credentials/
+**/jira.env
+**/notion.env
+**/*.env
+!**/*.env.example
+
+# Slack archives (real message content, NDA-sensitive) and slackdump's own
+# state file inside one - never committed, see ba-track-slack-archive
+workspace/slack-*-archive/
+
+# Machine migration backup (secrets/keys/config)
+_migration/
+
+# MemPalace per-project files
+mempalace.yaml
+entities.json
+
+# Obsidian
+.obsidian/
+.trash/
+
+# Playwright MCP session artifacts
+.playwright-mcp/
+
+# Python
+__pycache__/
+
+# OS
+.DS_Store
+
+# BABOK third-party books (copyrighted, not distributed; see BABOK Google Drive links)
+BABOK/04 - Knowledge Base/Books/
+
+# Notion script temp artifacts (leak real page IDs, never commit)
+_page_ids_tmp.json
+*_tmp.json
+# Project vaults (separate private repos, nested neighbors, not part of this repo)
+/*-vault/
+
+
+# log-script lock artifact
+logging/.log.lock
+
+# ba-docs-project-map personal folder (gaps catalog, pending artifacts, subagent work with client material)
+.local/project-map/
+
+# Deploy catalog data (personal per node) and the table generated from it, never in core.
+# The committed template is deploys.example.json; the skills create/maintain these locally.
+.claude/skills/ba-deploy-setup/references/deploys.json
+.claude/skills/ba-deploy-setup/references/deploy-registry.md
+
+# ba-setup install state (machine file, never in git)
+.claude/setup-state.json

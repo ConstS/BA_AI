@@ -1,0 +1,45 @@
+# CLAUDE.local.md: TEMPLATE
+
+> Copy this file to `CLAUDE.local.md` and fill in your own values. `CLAUDE.local.md` is personal: tracked in your private `origin`, never sent to the shared core. The shared `CLAUDE.md` pulls it in via the `@CLAUDE.local.md` import line, so anything here loads every session for you only.
+
+## Contact
+
+- Name: <full name>
+- Email: <work email>
+- Address me as: <form of address>
+- Reply language: <language of replies>
+
+## Names / spelling
+
+- Recurring names whose spelling matters: **<Name>** (list the correct form and the wrong ones to avoid). Delete if none.
+
+## Kit Python
+
+- Kit Python command: `<python-command>` (reference only; the kit launcher `.claude/hooks/kit-python.sh` picks the command itself).
+
+## Repositories
+
+Your workspace git repos:
+
+| Repo | Path | Branch | Remote | Purpose |
+|------|------|--------|--------|---------|
+| `<workspace-repo>` | `.` (project root) | `<branch>` | `<your-remote>` | Config, CLAUDE.md, skills, logging |
+| `<project>-vault` | `<project>-vault/` | `<branch>` | `<private-remote>` | Project docs and working materials |
+
+---
+
+## Per-project facts go in path-scoped rules, NOT here
+
+Facts that matter only inside one project (doc language, environments, client specifics) should load only when you edit that project. Put them in a file `.claude/rules/local/vault-PROJECT.md`, where PROJECT is the project name (personal, tracked in your `origin`, never in core) with `paths` frontmatter. Template (indented so it is not parsed as a live rule):
+
+    ---
+    paths:
+      - "<your-vault>/**"
+    ---
+
+    # <Your vault> context (personal, not distributed)
+
+    - Doc language: **<language>**.
+    - Any other project-specific facts (environments, client, conventions).
+
+Create `.claude/rules/local/` if it does not exist; like this file, it is tracked in your private `origin` and never goes to the core.
